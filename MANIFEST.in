@@ -1,2 +1,4 @@
 graft onepyssword
+prune tests/
+prune tox.ini
 include *.cfg *.md *.in LICENSE
