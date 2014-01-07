@@ -22,7 +22,7 @@ setup(
     ],
     author='Nikita Grishko',
     author_email='grin.minsk@gmail.com',
-    url='',
+    url='https://github.com/Gr1N/1pwd',
     license='MIT',
     packages=find_packages(),
     install_requires=[
