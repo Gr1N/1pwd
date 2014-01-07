@@ -12,7 +12,7 @@ def read(*rnames):
 
 setup(
     name='onepyssword',
-    version='0.1',
+    version='0.2.dev0',
     description='A command line interface for 1Password',
     long_description=read('README.md') +
                      read('HISTORY.md') +
