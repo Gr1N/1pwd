@@ -53,11 +53,15 @@ def load_keychain_item_data(identifier):
 def decrypt_keychain_item_password(b64_data, decrypted_key, item_type):
     decrypted_json = decrypt_encryption_key(b64_data, decrypted_key)
     decrypted_json = decrypted_json.decode('utf-8') if PY3 else decrypted_json
-    data = json.loads(decrypted_json)
+
+    try:
+        data = json.loads(decrypted_json)
+    except ValueError:
+        data = json.loads(decrypted_json[:-16])
 
     if item_type == 'webforms.WebForm':
         for field in data['fields']:
-            if field['designation'] == 'password' or field['name'] == 'Password':
+            if field.get('designation') == 'password' or field.get('name') == 'Password':
                 return field['value']
     elif item_type in ('passwords.Password', 'wallet.onlineservices.GenericAccount', ):
         return data['password']
