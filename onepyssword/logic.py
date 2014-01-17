@@ -23,7 +23,7 @@ __all__ = (
 
 
 KEYCHAIN_ENV_KEY = 'ONEPYSSWORD_KEYCHAIN'
-DEFAULT_KEYCHAIN_PATH = os.path.expanduser('~/Dropbox/1Password/1Password.agilekeychain')
+DEFAULT_KEYCHAIN_PATH = '~/Dropbox/1Password/1Password.agilekeychain'
 
 
 KeychainItem = namedtuple('KeychainItem', 'type, identifier')
@@ -150,7 +150,9 @@ def aes_decrypt(key, iv, encrypted_data):
     return decrypted[:-padding_size]
 
 
-_get_keychain_path = lambda: os.environ.get(KEYCHAIN_ENV_KEY, DEFAULT_KEYCHAIN_PATH)
+_get_keychain_path = lambda: os.path.expanduser(
+    os.environ.get(KEYCHAIN_ENV_KEY, DEFAULT_KEYCHAIN_PATH)
+)
 if PY3:
     get_keychain_path = functools.lru_cache()(_get_keychain_path)
 else:
