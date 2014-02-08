@@ -6,6 +6,12 @@ Changelog
 ----------------
 
 - Migrate to copypaste package
+0.4 (unreleased)
+                
+
+- Nothing changed yet.
+
+
 0.3 (2014-02-08)
   [Nikita Grishko]
 
