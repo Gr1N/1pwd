@@ -29,7 +29,7 @@ setup(
         'setuptools',
         'pbkdf2-ctypes==0.99.3',
         'pycrypto==2.6.1',
-        'xerox==0.3.1',
+        'copypaste==0.2.0',
     ],
     extras_require={
         'test': [

@@ -6,7 +6,7 @@ import sys
 from difflib import get_close_matches
 from getpass import getpass
 
-import xerox
+from copypaste import copy
 
 from onepyssword.logic import (
     get_keychain_items, get_encryption_key, unlock_encryption_key,
@@ -36,7 +36,7 @@ def go(argv=sys.argv[1:], stdout=sys.stdout, stderr=sys.stderr):
     if arguments.prompt:
         stdout.write('{0}\n'.format(password))
     else:
-        xerox.copy(password)
+        copy(password)
         stdout.write('Password copied to clipboard!\n')
 
 
