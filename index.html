@@ -44,13 +44,18 @@
 
 <p>To get a password:</p>
 
-<pre lang="shell"><code>1pwd github.com
+<pre lang="shell"><code>% 1pwd github.com
 </code></pre>
 
 <p>By default this will look in <code>~/Dropbox/1Password/1Password.agilekeychain</code>.
 You can set your keychain path as an enviornment variable:</p>
 
-<pre lang="shell"><code>export ONEPYSSWORD_KEYCHAIN=/path/to/keychain
+<pre lang="shell"><code>% export ONEPYSSWORD_KEYCHAIN=/path/to/keychain
+</code></pre>
+
+<p>Only for UNIX like systems you can specify your own command for copy.</p>
+
+<pre lang="shell"><code>% export ONEPYSSWORD_COPY_CMD=xsel,-pi
 </code></pre>
 
 <h2>
