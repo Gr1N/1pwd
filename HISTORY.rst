@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+0.3
+----------------
+
+- Migrate to copypaste package
+- Add support to specify your own copy command (only for UNIX like systems)
+  [Nikita Grishko]
+
+
 0.2
 ----------------
 
