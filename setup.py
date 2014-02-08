@@ -18,7 +18,7 @@ long_description = """{0}
 
 setup(
     name='onepyssword',
-    version='0.3.dev0',
+    version='0.3',
     description='A command line interface for 1Password',
     long_description=long_description,
     classifiers=(

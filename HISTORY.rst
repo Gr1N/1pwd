@@ -6,7 +6,7 @@ Changelog
 ----------------
 
 - Migrate to copypaste package
-- Add support to specify your own copy command (only for UNIX like systems)
+0.3 (2014-02-08)
   [Nikita Grishko]
 
 
