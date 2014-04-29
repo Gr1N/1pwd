@@ -37,9 +37,9 @@ setup(
     packages=find_packages(),
     install_requires=(
         'setuptools',
-        'pbkdf2-ctypes==0.99.3',
-        'pycrypto==2.6.1',
-        'copypaste==0.2.0',
+        'pbkdf2-ctypes>=0.99.3',
+        'pycrypto>=2.6.1',
+        'copypaste>=0.2.0',
     ),
     extras_require={
         'test': (
