@@ -2,10 +2,12 @@ Changelog
 =========
 
 
-0.4 (unreleased)
+0.3.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- EditorConfig support.
+- Flake8 support.
+- Style guide fixes.
 
 
 0.3.1 (2014-02-08)
