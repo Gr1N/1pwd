@@ -47,6 +47,7 @@ setup(
             'pytest',
         ),
         'development': (
+            'flake8',
             'zest.releaser',
             'check-manifest',
         ),

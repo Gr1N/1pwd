@@ -32,7 +32,8 @@ def go(argv=sys.argv[1:], stdout=sys.stdout, stderr=sys.stderr):
     parser = argparse.ArgumentParser()
     parser.add_argument('item')
     parser.add_argument('-f', '--find', action='store_true', help='find item')
-    parser.add_argument('-p', '--prompt', action='store_true', help='print password')
+    parser.add_argument('-p', '--prompt', action='store_true',
+                        help='print password')
     arguments = parser.parse_args(argv)
 
     item = arguments.item
@@ -107,5 +108,6 @@ def copy(string, stdout=sys.stdout, stderr=sys.stderr):
         stderr.write('Sorry, copy command not supported for your platform.\n')
         sys.exit(os.EX_DATAERR)
     except NoSuchFileOrDirectoryException:
-        stderr.write('Invalid copy command or tool for copy not installed in your system.\n')
+        stderr.write('Invalid copy command or tool for copy'
+                     ' was not installed in your system.\n')
         sys.exit(os.EX_DATAERR)

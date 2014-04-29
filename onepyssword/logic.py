@@ -26,9 +26,18 @@ KEYCHAIN_ENV_KEY = 'ONEPYSSWORD_KEYCHAIN'
 DEFAULT_KEYCHAIN_PATH = '~/Dropbox/1Password/1Password.agilekeychain'
 
 
-KeychainItem = namedtuple('KeychainItem', 'type, identifier')
-EncryptionKey = namedtuple('EncryptionKey', 'level, validation, iterations, encrypted_key')
-SaltyString = namedtuple('SaltyString', 'salt, data')
+KeychainItem = namedtuple(
+    'KeychainItem',
+    'type, identifier'
+)
+EncryptionKey = namedtuple(
+    'EncryptionKey',
+    'level, validation, iterations, encrypted_key'
+)
+SaltyString = namedtuple(
+    'SaltyString',
+    'salt, data'
+)
 
 
 def get_keychain_items():
@@ -37,7 +46,8 @@ def get_keychain_items():
         item_list = json.load(f)
 
     return dict(
-        (item[2], KeychainItem(type=item[1], identifier=item[0])) for item in item_list
+        (item[2], KeychainItem(type=item[1], identifier=item[0]))
+        for item in item_list
     )
 
 
@@ -61,21 +71,25 @@ def decrypt_keychain_item_password(b64_data, decrypted_key, item_type):
 
     if item_type == 'webforms.WebForm':
         for field in data['fields']:
-            if field.get('designation') == 'password' or field.get('name') == 'Password':
+            if field.get('designation') == 'password' or \
+               field.get('name') == 'Password':
                 return field['value']
-    elif item_type in ('passwords.Password', 'wallet.onlineservices.GenericAccount', ):
+    elif item_type in ('passwords.Password',
+                       'wallet.onlineservices.GenericAccount', ):
         return data['password']
     else:
         return None
 
 
 def get_encryption_keys():
-    path = os.path.join(get_keychain_path(), 'data', 'default', 'encryptionKeys.js')
+    path = os.path.join(get_keychain_path(), 'data', 'default',
+                        'encryptionKeys.js')
     with open(path, 'r') as f:
         keys_data = json.load(f)
 
     return dict(
-        (key_data['identifier'], init_encryption_key(key_data)) for key_data in keys_data['list']
+        (key_data['identifier'], init_encryption_key(key_data))
+        for key_data in keys_data['list']
     )
 
 
@@ -114,10 +128,13 @@ def get_santy_string(base64_encoded_string):
 
 
 def unlock_encryption_key(password, encryption_key):
-    key, iv = derive_pbkdf2(password, encryption_key.encrypted_key.salt, encryption_key.iterations)
+    key, iv = derive_pbkdf2(password, encryption_key.encrypted_key.salt,
+                            encryption_key.iterations)
 
     decrypted_key = aes_decrypt(key, iv, encryption_key.encrypted_key.data)
-    decrypted_key_valid = decrypt_encryption_key(encryption_key.validation, decrypted_key) == decrypted_key
+    decrypted_encr_key = decrypt_encryption_key(encryption_key.validation,
+                                                decrypted_key)
+    decrypted_key_valid = decrypted_encr_key == decrypted_key
     return decrypted_key if decrypted_key_valid else None
 
 
@@ -128,7 +145,8 @@ def decrypt_encryption_key(b64_data, decrypted_key):
 
 
 def derive_pbkdf2(password, salt, iterations):
-    key_and_iv = pbkdf2_bin(b(password), salt, iterations=iterations, keylen=32)
+    key_and_iv = pbkdf2_bin(b(password), salt, iterations=iterations,
+                            keylen=32)
     return key_and_iv[0:16], key_and_iv[16:]
 
 

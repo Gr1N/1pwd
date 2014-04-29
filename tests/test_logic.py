@@ -63,7 +63,8 @@ def test_unlock_encryption_key_invalid_password():
     item = items['foobar']
     encryption_key = _test_get_encryption_key(item)
 
-    decrypted_encryption_key = unlock_encryption_key('password', encryption_key)
+    decrypted_encryption_key = unlock_encryption_key('password',
+                                                     encryption_key)
     assert decrypted_encryption_key is None
 
 
